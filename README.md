@@ -1,16 +1,7 @@
 # custom_scroll_selector
 
-A new Flutter project.
+A custom scrollable selector
 
-## Getting Started
+![image](https://github.com/PrimeTheFirst/flutter_custom_scroll_selector/assets/89402723/1ae3f140-d539-456f-aff1-b726d9900100)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Feel free to change the code, make it more efficient, as speed and power is not something this project prioritizes. You can download the project/copy the main.dart file and change the selector as per your needs. The code is fairly simple, and comments have been left where necessary.
