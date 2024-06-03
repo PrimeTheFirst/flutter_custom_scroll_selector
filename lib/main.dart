@@ -77,20 +77,22 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body:ScrollSelector()
+        appBar: AppBar(
+          // TRY THIS: Try changing the color here to a specific color (to
+          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+          // change color while the other colors stay the same.
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          // Here we take the value from the MyHomePage object that was created by
+          // primethefirst on github and discord
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: const ScrollSelector()
 // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 }
+
 class ScrollSelector extends StatefulWidget {
   const ScrollSelector({super.key});
 
@@ -99,16 +101,19 @@ class ScrollSelector extends StatefulWidget {
 }
 
 class _ScrollSelectorState extends State<ScrollSelector> {
-  List<int> years = List<int>.generate(2030, (i) => i+2023); // set the first value as the max and i+x , x = start value
-  List<int> months = List<int>.generate(12, (i) => i+1); // set the first value as the max and i+x , x = start value
+  List<int> years = List<int>.generate(
+      2030,
+      (i) =>
+          i + 2023); // set the first value as the max and i+x , x = start value
+  List<int> months = List<int>.generate(12,
+      (i) => i + 1); // set the first value as the max and i+x , x = start value
   int month = 0;
   int year = 0;
-  List<int> month_with_thirtyone_days = [1,3,5,7,8,10,12];
+  List<int> month_with_thirtyone_days = [1, 3, 5, 7, 8, 10, 12];
   final PageController _pageController = PageController();
-  List<Widget> dayWidgets = List<int>.generate(31, (i) => i+1)
+  List<Widget> dayWidgets = List<int>.generate(31, (i) => i + 1)
       .map((e) => Center(
-      child: Text(
-          (e.toString().length == 1) ? '0$e' : e.toString())))
+          child: Text((e.toString().length == 1) ? '0$e' : e.toString())))
       .toList();
   @override
   void initState() {
@@ -122,11 +127,13 @@ class _ScrollSelectorState extends State<ScrollSelector> {
     super.dispose();
   }
 
+// Made by primethefirst on github and discord
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
-        ConstrainedBox( //copy and paste more of these ConstrainedBox's if you need more sliders
+        ConstrainedBox(
+          //copy and paste more of these ConstrainedBox's if you need more sliders
           constraints: const BoxConstraints(maxWidth: 50, minWidth: 20),
           child: Container(
             decoration: BoxDecoration(border: Border.all()),
@@ -134,14 +141,15 @@ class _ScrollSelectorState extends State<ScrollSelector> {
             child: PageView(
               scrollDirection: Axis.vertical,
               onPageChanged: (int page) {
-                setState(() { // set variable value here e.g year = year_list[page];
+                setState(() {
+                  // set variable value here e.g year = year_list[page];
                   year = years[page];
                 });
               },
               children: years
                   .map((e) => Center(
-                  child: Text(
-                      (e.toString().length == 1) ? '0$e' : e.toString())))
+                      child: Text(
+                          (e.toString().length == 1) ? '0$e' : e.toString())))
                   .toList(),
             ),
           ),
@@ -160,8 +168,8 @@ class _ScrollSelectorState extends State<ScrollSelector> {
               },
               children: months
                   .map((e) => Center(
-                  child: Text(
-                      (e.toString().length == 1) ? '0$e' : e.toString())))
+                      child: Text(
+                          (e.toString().length == 1) ? '0$e' : e.toString())))
                   .toList(),
             ),
           ),
@@ -169,36 +177,40 @@ class _ScrollSelectorState extends State<ScrollSelector> {
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 50, minWidth: 20),
           child: Container(
+            // Made by primethefirst on github and discord
             decoration: BoxDecoration(border: Border.all()),
             height: 70,
             child: PageView(
-              onPageChanged: (int page) {
-                setState(() {
-
-                });
-              },
-              scrollDirection: Axis.vertical,
-              children: getDayWidgetsForMonth(month,year,dayWidgets,month_with_thirtyone_days)
-            ),
+                onPageChanged: (int page) {
+                  setState(() {});
+                },
+                scrollDirection: Axis.vertical,
+                children: getDayWidgetsForMonth(
+                    month, year, dayWidgets, month_with_thirtyone_days)),
           ),
         ),
       ],
     );
-
   }
 }
 
-List<Widget> getDayWidgetsForMonth(int month, int year, List<Widget> dayWidgets, List<int> monthWithThirtyOneDays) {
+List<Widget> getDayWidgetsForMonth(int month, int year, List<Widget> dayWidgets,
+    List<int> monthWithThirtyOneDays) {
   if (monthWithThirtyOneDays.contains(month)) {
     return dayWidgets;
   } else if (month == 2) {
     if (year % 4 == 0) {
       // Leap year
-      return dayWidgets.sublist(0, dayWidgets.length - 2); // February in leap year has 29 days
+      return dayWidgets.sublist(
+          0, dayWidgets.length - 2); // February in leap year has 29 days
     } else {
-      return dayWidgets.sublist(0, dayWidgets.length - 3); // February in non-leap year has 28 days
+      return dayWidgets.sublist(
+          0, dayWidgets.length - 3); // February in non-leap year has 28 days
     }
   } else {
-    return dayWidgets.sublist(0, dayWidgets.length - 1); // Months with 30 days
+    return dayWidgets.sublist(
+        0,
+        dayWidgets.length -
+            1); // Months with 30 days // Made by primethefirst on github and discord
   }
 }
